@@ -1,19 +1,19 @@
 import '@brightspace-ui/core/components/button/button-icon.js';
-import './attachment-embed.js';
-import './attachment-url.js';
-import './attachment-video.js';
-import './views/attachment-view-deleted.js';
-import { css, html, LitElement } from 'lit-element';
-import { defaultLink, unfurl } from '../helpers/attachment-utils.js';
 import { announce } from '@brightspace-ui/core/helpers/announce.js';
+import { css, html, LitElement } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map.js';
+import { PendingContainerMixin } from 'siren-sdk/src/mixin/pending-container-mixin.js';
+import { defaultLink, unfurl } from '../helpers/attachment-utils.js';
+import { BaseMixin } from '../mixins/base-mixin.js';
+import { RequestProviderMixin } from '../mixins/request-provider-mixin.js';
 import { AttachmentContent } from './attachment-content.js';
+import './attachment-embed.js';
 import { AttachmentFile } from './attachment-file.js';
 import { AttachmentImage } from './attachment-image.js';
 import { AttachmentLti } from './attachment-lti.js';
-import { BaseMixin } from '../mixins/base-mixin.js';
-import { classMap } from 'lit-html/directives/class-map.js';
-import { PendingContainerMixin } from 'siren-sdk/src/mixin/pending-container-mixin.js';
-import { RequestProviderMixin } from '../mixins/request-provider-mixin.js';
+import './attachment-url.js';
+import './attachment-video.js';
+import './views/attachment-view-deleted.js';
 
 const baseUrl = import.meta.url;
 
@@ -355,7 +355,7 @@ export class Attachment extends RequestProviderMixin(PendingContainerMixin(BaseM
 		`;
 	}
 
-	async updated(changedProperties) {
+	updated(changedProperties) {
 		super.updated(changedProperties);
 
 		if (changedProperties.has('attachment') && this.attachment) {
